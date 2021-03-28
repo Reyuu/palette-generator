@@ -1,0 +1,96 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.0/FileSaver.min.js"
+    integrity="sha512-csNcFYJniKjJxRWRV1R7fvnXrycHP6qDR21mgz1ZP55xY5d+aHLfo9/FcGDQLfn2IfngbAHd8LdfsagcCqgTcQ=="
+    crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/chroma-js/2.1.1/chroma.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="main.js"></script>
+<link rel="stylesheet" href="main.css">
+<body>
+    <div class="vertical-centerer">
+        <div>
+            <h1>Palette generator</h1>
+        </div>
+        
+        <table>
+            <tr>
+                <!--Palette name-->
+                <th>
+                    <label>Palette's name:</label>
+                </th>
+                <th>
+                    <input type="text" name="palette_name" id="palette_name">
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    <label>Start color:</label>
+                </th>
+                <th>
+                    <label class="color_square" id="color_picker_add">
+                        <input type="color" name="add_color" id="add_color" value="#000000">
+                    </label>
+                    <input id="add_color_button" type="button" value="+" style="margin-left: 5px;">
+                </th>
+                <th>
+                    <input type="range" name="padding_start" id="padding_start" value=1 min=0 max=1 step=0.01>
+                </th>
+                <th style="width: 50px;">
+                    <label id="padding_start_label">nan</label>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    <label>End color:</label>
+                </th>
+                <th>
+                    <label class="color_square" id="color_picker_end">
+                        <input type="color" name="end_color" id="end_color" value="#000000">
+                    </label>
+                    <input id="add_color_button" type="button" value="+" style="margin-left: 5px; visibility: hidden; pointer-events: none;">
+                </th>
+                <th>
+                    <input type="range" name="padding_end" id="padding_end" value=0 min=0 max=1 step=0.01>
+                </th>
+                <th>
+                    <label id="padding_end_label">nan</label>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    <label>Interpolation:</label>
+                </th>
+                <th>
+                    <select name="interpolation" id="interpolation" default=>
+                        <option value="rgb" selected="selected">RGB</option>
+                        <option value="hsl">HSL</option>
+                        <option value="lab">LAB</option>
+                        <option value="lch">LCH</option>
+                        <option value="lrgb">LRGB</option>
+                    </select>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    <label>Steps:</label>
+                </th>
+                <th>
+                    
+                </th>
+                <th><input type="range" name="steps" id="steps_slider" min=2 max=16 value=4></th>
+                <th><label id="steps_label">nan</label></th>
+            </tr>
+            <tr style="height: 50px;">
+                <th>
+                    <a id="download_palette" href="#">Download&nbsp;palette</a>
+                </th>
+            </tr>
+        </table>
+    </div>
+    <div class="centerer">
+        <div id="colors">
+            <!--<div class="color_square" style="background-color: aqua;"></div>-->
+        </div>
+    </div>
+    
+</body>
