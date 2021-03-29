@@ -72,7 +72,7 @@ function generate_png() {
         for (j = 0; j < generated_colors[i].length; j++) {
             context.fillStyle = generated_colors[i][j];
             context.strokeStyle = generated_colors[i][j];
-            context.fillRect(16 * (j - 1), 16 * (i - 1), 16 * j, 16 * i);
+            context.fillRect(16 * j, 16 * i, 16 * (j + 1), 16 * (i + 1));
             context.stroke();
         }
     }
