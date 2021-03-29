@@ -4,6 +4,8 @@ steps = 4;
 end_color = "#000000";
 padding_start = 1;
 padding_end = 0;
+gamma = 1;
+saturation = 1;
 
 //update colors
 function update_colors(){
@@ -11,8 +13,9 @@ function update_colors(){
     generated_colors = [];
     for (i = 0; i < my_colors.length; i++){
         c = my_colors[i];
+        c = chroma(c).saturate(saturation);
         cs = chroma.scale([c, end_color]);
-        cs = cs.padding([1-padding_start, padding_end]).mode($("#interpolation").val()).colors(steps);
+        cs = cs.padding([1 - padding_start, padding_end]).gamma(gamma).mode($("#interpolation").val()).colors(steps);
         generated_colors.push(cs);
         new_color_div = $("<div class=\"color_row\" id=\"color" + i + "\"></div>");
         for (j = 0; j < steps; j++){
@@ -45,6 +48,8 @@ $(function(){
     $("#steps_label").text(steps);
     $("#padding_start_label").text(padding_start);
     $("#padding_end_label").text(padding_end);
+    $("#gamma_label").text(gamma);
+    $("#saturation_label").text(gamma);
 
     $("#end_color").on("change", function(){
         end_color = $("#end_color").val();
@@ -81,5 +86,15 @@ $(function(){
     });
     $("#end_color").on("change", function () {
         this.parentNode.style.backgroundColor = this.value;
+    });
+    $("#gamma_slider").on("input", function () {
+        gamma = $("#gamma_slider").val();
+        $("#gamma_label").text(gamma);
+        update_colors();
+    });
+    $("#saturation_slider").on("input", function () {
+        gamma = $("#saturation_slider").val();
+        $("#saturation_label").text(gamma);
+        update_colors();
     });
 });
