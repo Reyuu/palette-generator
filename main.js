@@ -6,6 +6,7 @@ padding_start = 1;
 padding_end = 0;
 gamma = 1;
 saturation = 1;
+saturation_enabled = true;
 
 //update colors
 function update_colors(){
@@ -13,7 +14,9 @@ function update_colors(){
     generated_colors = [];
     for (i = 0; i < my_colors.length; i++){
         c = my_colors[i];
-        c = chroma(c).saturate(saturation);
+        if (saturation_enabled) {
+            c = chroma(c).saturate(saturation);
+        }
         cs = chroma.scale([c, end_color]);
         cs = cs.padding([1 - padding_start, padding_end]).gamma(gamma).mode($("#interpolation").val()).colors(steps);
         generated_colors.push(cs);
@@ -128,6 +131,15 @@ $(function(){
     $("#saturation_slider").on("input", function () {
         gamma = $("#saturation_slider").val();
         $("#saturation_label").text(gamma);
+        update_colors();
+    });
+    $("#saturation_checkbox").on("change", function () {
+        saturation_enabled = $("#saturation_checkbox").prop('checked');
+        if (saturation_enabled) {
+            $("#saturation_slider").prop('disabled', false);
+        } else {
+            $("#saturation_slider").prop('disabled', true);
+        }
         update_colors();
     });
 });
