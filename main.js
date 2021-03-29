@@ -40,6 +40,36 @@ function generate_gpl(){
     return buffer
 }
 
+function dataURLtoFile(dataurl) {
+    var arr = dataurl.split(','),
+        mime = arr[0].match(/:(.*?);/)[1],
+        bstr = atob(arr[1]),
+        n = bstr.length,
+        u8arr = new Uint8Array(n);
+    while (n--) {
+        u8arr[n] = bstr.charCodeAt(n);
+    }
+    return new Blob([u8arr], { type: mime });
+}
+
+function generate_png() {
+    canvas = $("<canvas></canvas");
+    canvas[0].width = 16 * steps;
+    canvas[0].height = 16 * generated_colors.length;
+    context = canvas[0].getContext("2d");
+    for (i = 0; i < generated_colors.length; i++) {
+        for (j = 0; j < generated_colors[i].length; j++) {
+            context.fillStyle = generated_colors[i][j];
+            context.strokeStyle = generated_colors[i][j];
+            context.fillRect(16 * j - 16, 16 * i - 16, 16 * j, 16 * i);
+            context.stroke();
+        }
+    }
+    canvas_val = canvas[0].toDataURL();
+    blob = dataURLtoFile(canvas_val)
+    saveAs(blob, "palette.png");
+}
+
 //handle events
 $(function(){
     update_colors();
