@@ -20,10 +20,18 @@ function update_colors(){
         cs = chroma.scale([c, end_color]);
         cs = cs.padding([1 - padding_start, padding_end]).gamma(gamma).mode($("#interpolation").val()).colors(steps);
         generated_colors.push(cs);
-        new_color_div = $("<div class=\"color_row\" id=\"color" + i + "\"></div>");
+        new_color_div = $("<div class=\"centerer-items color_row\" id=\"color" + i + "\"></div>");
         for (j = 0; j < steps; j++){
             new_color_div.append("<div class=\"color_square\" style=\"background-color: " + cs[j] +"\"></div>");
         }
+        //new_color_div.append("<input type=\"button\" value=\"-\" data-index=" + i + "></input>");
+        btn = $("<input class=\"delete_button\" type=\"button\" value=\"-\" id=\"delete" + i + "\"></input>");
+        btn.on("click", function () {
+            index = parseInt(this.id.replace("delete", ""))
+            my_colors.splice(index, 1);
+            update_colors();
+        });
+        new_color_div.append(btn);
         $("#colors").append(new_color_div);
     }
 }

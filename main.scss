@@ -49,6 +49,26 @@ body{
         -ms-flex-align: start;
         align-items: flex-start;
     }
+    .centerer-items{
+        display: -ms-inline-flexbox;
+        display: -webkit-inline-flex;
+        display: inline-flex;
+        -webkit-flex-direction: row;
+        -ms-flex-direction: row;
+        flex-direction: row;
+        -webkit-flex-wrap: nowrap;
+        -ms-flex-wrap: nowrap;
+        flex-wrap: nowrap;
+        -webkit-justify-content: center;
+        -ms-flex-pack: start;
+        justify-content: center;
+        -webkit-align-content: center;
+        -ms-flex-line-pack: center;
+        align-content: center;
+        -webkit-align-items: center;
+        -ms-flex-align: center;
+        align-items: center;
+    }
     #download_palette, #download_palette_png{
         text-decoration: none;
         color: gold;
@@ -79,7 +99,7 @@ body{
         flex-wrap: nowrap;
         justify-content: flex-start;
         align-content: stretch;
-        align-items: flex-start;
+        align-items: center;
     }
 
     input[type='text']{
@@ -110,12 +130,13 @@ body{
         border-style: solid;
     }
 
-    #add_color_button{
+    input[type=button]{
         border: none;
         background-color: lighten($primary-color, 50%);
         color: white;
         font-weight: bold;
         font-size: 1em;
+        margin-left: 5px;
     }
 
     select, option{
@@ -130,6 +151,12 @@ body{
     }
     #interpolation{
         width:100%
+    }
+    .delete_button{
+        opacity: 0.2;
+    }
+    .delete_button:hover{
+        opacity: 1;
     }
 }
 

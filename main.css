@@ -50,6 +50,26 @@ body .centerer {
           align-items: flex-start;
 }
 
+body .centerer-items {
+  display: -ms-inline-flexbox;
+  display: -webkit-inline-box;
+  display: inline-flex;
+  -ms-flex-direction: row;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+          flex-direction: row;
+  -ms-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+  -ms-flex-pack: start;
+  -webkit-box-pack: center;
+          justify-content: center;
+  -ms-flex-line-pack: center;
+  align-content: center;
+  -ms-flex-align: center;
+  -webkit-box-align: center;
+          align-items: center;
+}
+
 body #download_palette, body #download_palette_png {
   text-decoration: none;
   color: gold;
@@ -89,9 +109,9 @@ body .color_row {
           justify-content: flex-start;
   -ms-flex-line-pack: stretch;
       align-content: stretch;
-  -webkit-box-align: start;
-      -ms-flex-align: start;
-          align-items: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 body input[type='text'] {
@@ -126,12 +146,13 @@ body #color_picker_add, body #color_picker_end {
   border-style: solid;
 }
 
-body #add_color_button {
+body input[type=button] {
   border: none;
   background-color: #8749ff;
   color: white;
   font-weight: bold;
   font-size: 1em;
+  margin-left: 5px;
 }
 
 body select, body option {
@@ -147,5 +168,13 @@ body input[type=range] {
 
 body #interpolation {
   width: 100%;
+}
+
+body .delete_button {
+  opacity: 0.2;
+}
+
+body .delete_button:hover {
+  opacity: 1;
 }
 /*# sourceMappingURL=main.css.map */
