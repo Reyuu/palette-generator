@@ -61,13 +61,12 @@ function generate_png() {
         for (j = 0; j < generated_colors[i].length; j++) {
             context.fillStyle = generated_colors[i][j];
             context.strokeStyle = generated_colors[i][j];
-            context.fillRect(16 * j - 16, 16 * i - 16, 16 * j, 16 * i);
+            context.fillRect(16 * (j - 1), 16 * (i - 1), 16 * j, 16 * i);
             context.stroke();
         }
     }
     canvas_val = canvas[0].toDataURL();
-    blob = dataURLtoFile(canvas_val)
-    saveAs(blob, "palette.png");
+    return canvas_val
 }
 
 //handle events
@@ -110,6 +109,10 @@ $(function(){
     $("#download_palette").on("click", function(){
         blob = new Blob([generate_gpl()], {type: "text/plain;charset=utf-8"});
         saveAs(blob, "palette.gpl");
+    });
+    $("#download_palette_png").on("click", function () {
+        blob = dataURLtoFile(generate_png())
+        saveAs(blob, "palette.png");
     });
     $("#add_color").on("change", function(){
         this.parentNode.style.backgroundColor = this.value;

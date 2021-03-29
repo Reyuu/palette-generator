@@ -50,7 +50,7 @@ body .centerer {
           align-items: flex-start;
 }
 
-body #download_palette {
+body #download_palette, body #download_palette_png {
   text-decoration: none;
   color: gold;
   width: 100%;
