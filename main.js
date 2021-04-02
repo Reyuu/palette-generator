@@ -162,4 +162,17 @@ $(function(){
         separate_end_colors = $("#separate_colors_checkbox").prop('checked');
         update_colors();
     });
+    $("#random_start_color").on("click", function () {
+        c = chroma.random().hex();
+        $("#color_picker_add").css("background-color", c);
+        $("#add_color").val(c);
+        update_colors();
+    });
+    $("#random_end_color").on("click", function () {
+        c = chroma.random().hex();
+        $("#color_picker_end").css("background-color", c);
+        $("#end_color").val(c);
+        end_color = c;
+        update_colors();
+    });
 });

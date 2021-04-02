@@ -123,6 +123,7 @@ body{
     #add_color, #end_color{
         visibility: hidden;
     }
+
     #color_picker_add, #color_picker_end{
         border-width: 2px;
         border-radius: 3px;
@@ -134,7 +135,6 @@ body{
         border: none;
         background-color: lighten($primary-color, 50%);
         color: white;
-        font-weight: bold;
         font-size: 1em;
         margin-left: 5px;
     }
@@ -149,12 +149,14 @@ body{
     input[type=range] {
         height: 3px;
     }
+
     #interpolation{
         width:100%
     }
     .delete_button{
         opacity: 0.2;
     }
+    
     .delete_button:hover{
         opacity: 1;
     }
