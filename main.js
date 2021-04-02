@@ -2,11 +2,13 @@ my_colors = [];
 generated_colors = [];
 steps = 4;
 end_color = "#000000";
+end_colors = [];
 padding_start = 1;
 padding_end = 0;
 gamma = 1;
 saturation = 1;
 saturation_enabled = true;
+separate_end_colors = false;
 
 //update colors
 function update_colors(){
@@ -17,7 +19,11 @@ function update_colors(){
         if (saturation_enabled) {
             c = chroma(c).saturate(saturation);
         }
-        cs = chroma.scale([c, end_color]);
+        if (separate_end_colors) {
+            cs = chroma.scale([c, end_colors[i]])
+        } else {
+            cs = chroma.scale([c, end_color]);
+        }
         cs = cs.padding([1 - padding_start, padding_end]).gamma(gamma).mode($("#interpolation").val()).colors(steps);
         generated_colors.push(cs);
         new_color_div = $("<div class=\"centerer-items color_row\" id=\"color" + i + "\"></div>");
@@ -29,6 +35,7 @@ function update_colors(){
         btn.on("click", function () {
             index = parseInt(this.id.replace("delete", ""))
             my_colors.splice(index, 1);
+            end_colors.splice(index, 1);
             update_colors();
         });
         new_color_div.append(btn);
@@ -105,6 +112,7 @@ $(function(){
     });
     $("#add_color_button").on("click", function () {
         my_colors.push($("#add_color").val());
+        end_colors.push($("#end_color").val())
         update_colors();
     });
     $('#padding_start').on("input", function(){
@@ -148,6 +156,10 @@ $(function(){
         } else {
             $("#saturation_slider").prop('disabled', true);
         }
+        update_colors();
+    });
+    $("#separate_colors_checkbox").on("change", function () {
+        separate_end_colors = $("#separate_colors_checkbox").prop('checked');
         update_colors();
     });
 });
