@@ -7,7 +7,7 @@ padding_start = 1;
 padding_end = 0;
 gamma = 1;
 saturation = 1;
-saturation_enabled = true;
+saturation_enabled = false;
 separate_end_colors = false;
 
 //update colors
